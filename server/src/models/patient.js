@@ -8,6 +8,8 @@ const PatientSchema = new mongoose.Schema(
     Department: { type: String, required: true },
     Date: { type: String, required: true },
     time_slot: { type: String, required: true },
+    appointment_number: { type: String },
+    virtual_queue: { type: String },
     Status: { type: String, default: "Pending" , enum: ["Pending", "Attended", "Not Attended", "Cancelled"]},
   },
   { timestamps: true }
