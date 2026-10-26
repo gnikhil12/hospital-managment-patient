@@ -55,14 +55,14 @@ exports.getPatients = async (req, res) => {
 exports.getPatient_todays_appointment = async (req, res) => {
   try {
     const number = req.body.number;
-    console.log(number)
+    console.log(number.slice(2))
 
     // Get today's date in YYYY-MM-DD format
     const today = new Date().toISOString().split("T")[0];
 
     // Find today's appointment for this patient
     const patient = await Patient.findOne({
-      contact: number,
+      contact: number.slice(2),
       Date: today,
     });
 
