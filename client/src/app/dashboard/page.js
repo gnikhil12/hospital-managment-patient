@@ -204,6 +204,11 @@ export default function Dashboard() {
 
             setEditingId(id);
             window.scrollTo({ top: 0, behavior: "smooth" });
+            await Promise.all([
+                fetchTodaysPatients(),
+                fetchTomorrowPatients(),
+                fetchAllPatients(),
+            ]);
         } catch (err) {
             setError(err.message);
         }
@@ -223,21 +228,11 @@ export default function Dashboard() {
             }
             alert("Status is Updated")
             // Update the patient in the frontend immediately
-            setAllPatients((prev) =>
-                prev.map((patient) =>
-                    patient._id === id ? { ...patient, ...data } : patient
-                )
-            );
-            setTodaysPatients((prev) =>
-                prev.map((patient) =>
-                    patient._id === id ? { ...patient, ...data } : patient
-                )
-            );
-            setTomorrowPatients((prev) =>
-                prev.map((patient) =>
-                    patient._id === id ? { ...patient, ...data } : patient
-                )
-            );
+            await Promise.all([
+                fetchTodaysPatients(),
+                fetchTomorrowPatients(),
+                fetchAllPatients(),
+            ]);
         } catch (err) {
             setError(err.message || "Failed to update status");
         }
