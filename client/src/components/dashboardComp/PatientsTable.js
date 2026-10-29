@@ -44,12 +44,12 @@ function PatientsTable({ patients, handleEdit, handleDelete, updateStatus }) {
                                         >
                                             Edit
                                         </button>
-                                        <button
-                                            onClick={() => handleDelete(patient._id)}
-                                            className="rounded cursor-pointer bg-amber-100 px-3 py-1 text-amber-800"
-                                        >
-                                            delete
-                                        </button>
+                                        // <button
+                                        //     onClick={() => handleDelete(patient._id)}
+                                        //     className="rounded cursor-pointer bg-amber-100 px-3 py-1 text-amber-800"
+                                        // >
+                                        //     delete
+                                        // </button>
                                     </div>
                                 </td>
                                 <td className="p-3">
