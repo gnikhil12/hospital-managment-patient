@@ -118,11 +118,9 @@ export default function Dashboard() {
             setLoading(true);
 
             try {
-                await Promise.all([
-                    fetchTodaysPatients(),
-                    fetchTomorrowPatients(),
-                    fetchAllPatients(),
-                ]);
+                await fetchTodaysPatients();
+                await fetchTomorrowPatients();
+                await fetchAllPatients();
             } finally {
                 setLoading(false);
             }
@@ -167,11 +165,9 @@ export default function Dashboard() {
             setForm(emptyForm);
             setEditingId(null);
 
-            await Promise.all([
-                fetchTodaysPatients(),
-                fetchTomorrowPatients(),
-                fetchAllPatients(),
-            ]);
+            await fetchTodaysPatients();
+            await fetchTomorrowPatients();
+            await fetchAllPatients();
         } catch (err) {
             setError(err.message || "Unable to save patient");
         } finally {
@@ -204,11 +200,9 @@ export default function Dashboard() {
 
             setEditingId(id);
             window.scrollTo({ top: 0, behavior: "smooth" });
-            await Promise.all([
-                fetchTodaysPatients(),
-                fetchTomorrowPatients(),
-                fetchAllPatients(),
-            ]);
+            await fetchTodaysPatients();
+            await fetchTomorrowPatients();
+            await fetchAllPatients();
         } catch (err) {
             setError(err.message);
         }
@@ -228,11 +222,9 @@ export default function Dashboard() {
             }
             alert("Status is Updated")
             // Update the patient in the frontend immediately
-            await Promise.all([
-                fetchTodaysPatients(),
-                fetchTomorrowPatients(),
-                fetchAllPatients(),
-            ]);
+            await fetchTodaysPatients();
+            await fetchTomorrowPatients();
+            await fetchAllPatients();
         } catch (err) {
             setError(err.message || "Failed to update status");
         }
