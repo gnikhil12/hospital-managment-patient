@@ -340,7 +340,7 @@ def appointment_no_check(from_no):
     if not success or not isinstance(result, dict):
         logging.error("Appointment lookup failed: %s", result)
         return (
-            "Sorry, we could not check your appointment right now. "
+            "Sorry, we could not check your Today's appointment right now. "
             "Please try again later."
         )
 
@@ -635,7 +635,7 @@ def webhook():
             )
 
         except (KeyError, ValueError, TypeError) as e:
-            logging.exception("Unable to process WhatsApp Flow response")
+            logging.exception("Unable to process WhatsApp Flow response",KeyError,"----",ValueError,"----",TypeError)
             send_whatsapp_message(
                 from_no,
                 "Sorry, we could not process your form. "
@@ -711,9 +711,9 @@ def webhook():
                 return "", 200
 
             # Validate the fields returned by the API
-            patient_id = resultget("patient",{}).get("_id")
+            patient_id = result.get("patient",{}).get("_id")
             appointment_number = result.get("appointment_number")
-            virtual_queue = result.get("virtual_queue")
+            virtual_queue = result.get("patient",{}).get("virtual_queue")
             # current_queue = result.get("current_queue_number")
 
             if not patient_id:
